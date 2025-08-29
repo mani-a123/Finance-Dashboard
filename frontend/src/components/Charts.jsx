@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Line, Pie } from "react-chartjs-2";
 import {
@@ -77,19 +78,56 @@ export default function Charts() {
     ],
   };
 
+  // Dark theme for chart elements
+  const darkThemeOptions = {
+    responsive: true,
+    plugins: {
+      tooltip: {
+        backgroundColor: "#333",
+        titleColor: "#fff",
+        bodyColor: "#fff",
+        borderColor: "#444",
+        borderWidth: 1,
+      },
+      legend: {
+        labels: {
+          fontColor: "white", // White text for legend
+        },
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          color: "#555", // Darker grid lines
+        },
+        ticks: {
+          color: "#fff", // White tick labels
+        },
+      },
+      y: {
+        grid: {
+          color: "#555", // Darker grid lines
+        },
+        ticks: {
+          color: "#fff", // White tick labels
+        },
+      },
+    },
+  };
+
   return (
     <div className="grid grid-cols-2 gap-6 mt-6">
-      <div className="bg-white shadow p-4 rounded-2xl">
-        <h2 className="font-bold mb-2">Monthly Cashflow</h2>
-        <Line data={lineData} />
+      <div className="bg-gray-800 shadow-lg p-6 rounded-2xl">
+        <h2 className="font-bold mb-2 text-white">Monthly Cashflow</h2>
+        <Line data={lineData} options={darkThemeOptions} />
       </div>
-      <div className="bg-white shadow p-4 rounded-2xl">
-        <h2 className="font-bold mb-2">Category Breakdown</h2>
-        <Pie data={pieData} />
+      <div className="bg-gray-800 shadow-lg p-6 rounded-2xl">
+        <h2 className="font-bold mb-2 text-white">Category Breakdown</h2>
+        <Pie data={pieData} options={darkThemeOptions} />
       </div>
       {prediction && (
         <div className="col-span-2 bg-yellow-100 p-4 rounded-2xl text-center font-semibold mt-2">
-          📊 Predicted Next Month Expense: ${prediction.toFixed(2)}
+          📊 Predicted Next Month Expense: ₹{prediction.toFixed(2)}
         </div>
       )}
     </div>

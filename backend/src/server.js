@@ -8,6 +8,9 @@ import statsRoutes from './routes/stats.js';
 
 dotenv.config();
 const app = express();
+import predictionRoutes from "./routes/predictionRoutes.js";
+
+
 
 
 
@@ -20,6 +23,6 @@ app.use(express.urlencoded({ extended: true })); // optional, for form-data
 app.use('/auth', authRoutes);
 app.use('/transactions', txnRoutes);
 app.use('/stats', statsRoutes);
-
+app.use("/prediction", predictionRoutes);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
