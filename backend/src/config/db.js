@@ -26,8 +26,8 @@ const { Pool } = pkg;
 
 // Create a new Pool instance
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
-  
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false } // Required for Supabase
 });
 
 // Try to connect to PostgreSQL and log any errors
