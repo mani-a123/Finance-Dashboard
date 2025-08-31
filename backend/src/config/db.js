@@ -13,11 +13,11 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 dotenv.config();
 if (!process.env.DATABASE_URL) {
-    console.error('❌ DATABASE_URL not found in environment');
-  } else {
-    //console.log('✅ DATABASE_URL loaded:', process.env.DATABASE_URL);
-  }
-  
+  console.error('❌ DATABASE_URL not found in environment');
+} else {
+  //console.log('✅ DATABASE_URL loaded:', process.env.DATABASE_URL);
+}
+
 // Destructure Pool from pg
 const { Pool } = pkg;
 
@@ -26,9 +26,10 @@ const { Pool } = pkg;
 
 // Create a new Pool instance
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
-  
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false } // Required for Supabase
 });
+
 
 // Try to connect to PostgreSQL and log any errors
 pool.connect()
