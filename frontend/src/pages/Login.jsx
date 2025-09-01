@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api";
+import { Link } from 'react-router-dom';
 
 export default function Login({ setToken }) {
   const [email, setEmail] = useState("");
@@ -62,12 +63,12 @@ export default function Login({ setToken }) {
   
         <p className="text-sm text-center text-gray-400">
           Don’t have an account?{" "}
-          <a
-            href="/register"
+          <Link
+            to="/register"
             className="text-indigo-400 font-semibold hover:underline hover:text-indigo-300"
           >
             Register
-          </a>
+          </Link>
         </p>
       </form>
     </div>
